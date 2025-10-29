@@ -1,0 +1,24 @@
+{
+  "name": "auction-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool that allows you to add and remove items from a auction house.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MR-2025-PT-July-L5ADV/mission-5-phase-1-individual-HamFeet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MR-2025-PT-July-L5ADV/mission-5-phase-1-individual-HamFeet/issues"
+  },
+  "homepage": "https://github.com/MR-2025-PT-July-L5ADV/mission-5-phase-1-individual-HamFeet#readme",
+  "dependencies": {
+    "commander": "^14.0.2",
+    "inquirer": "^12.10.0",
+    "mongoose": "^8.19.2"
+  }
+}
