@@ -11,7 +11,7 @@ import {
 const questions = [
     {
         type: 'input',
-        name: 'name',
+        name: 'item',
         message: 'Name of the item'
     },
     {
