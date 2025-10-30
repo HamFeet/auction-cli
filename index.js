@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 //Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
@@ -7,7 +7,7 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connect('mongodb://localhost:27017/auctioncli');
 
 //Import model
-const Item = require('./models/item')
+import Item from'./models/item.js'
 
 //Add Item
 const addItem = (item) => {
@@ -29,7 +29,7 @@ const findItem = (item) => {
 
 //Export methods 
 
-module.exports = {
+export {
     addItem,
     findItem
-}
+};

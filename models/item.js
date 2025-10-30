@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 //Item Schema
 const itemSchema = mongoose.Schema({
@@ -8,5 +8,7 @@ const itemSchema = mongoose.Schema({
     reservePrice: { type: Number }
 })
 
-module.exports = mongoose.model('Item', itemSchema);
+const Item = mongoose.model('Item', itemSchema);
+
+export default Item;
 
