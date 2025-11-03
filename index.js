@@ -1,23 +1,20 @@
 import mongoose from 'mongoose';
-
-//Map global promise - get rid of warning
-mongoose.Promise = global.Promise;
-
-//Conect to db
-const db = mongoose.connect('mongodb://localhost:27017/auctioncli');
+import { connectDB } from './db.js';``
 
 //Import model
 import Item from'./models/item.js'
 
 //Add Item
-const addItem = (item) => {
+const addItem = async (item) => {
+    await connectDB();
     Item.create(item).then(item => {
         console.info('New Item Added');
         mongoose.connection.close();
     })
 }
 //Find Item
-const findItem = (item) => {
+const findItem = async (item) => {
+    await connectDB();
     //Make case insensitive
     const search = new RegExp(item, 'i');
     Item.find({ item: search }).then(results => {
@@ -28,7 +25,8 @@ const findItem = (item) => {
 }
 
 //Update Item
-const updateItem = (_id, item) => {
+const updateItem = async (_id, item) => {
+    await connectDB();
     Item.updateOne({_id}, item)
     .then(results => {
         console.info('Item updated');
@@ -37,7 +35,8 @@ const updateItem = (_id, item) => {
 }
 
 //Remove Item
-const removeItem = (_id) => {
+const removeItem = async (_id) => {
+    await connectDB();
     Item.deleteOne({_id})
     .then(results => {
         console.info('Item removed');
@@ -46,7 +45,8 @@ const removeItem = (_id) => {
 }
 
 //List Items
-const listItems = () => {
+const listItems = async () => {
+    await connectDB();
     Item.find()
     .then(results => {
         console.info(results);
