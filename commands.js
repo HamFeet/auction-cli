@@ -4,7 +4,10 @@ const program = new Command();
 
 import {
     addItem,
-    findItem
+    findItem,
+    updateItem,
+    removeItem,
+    listItems
 } from './index.js';
 
 // Item questions
@@ -42,19 +45,44 @@ program
 //     .action((item, description, startPrice, reservePrice) => {
 //         addItem({item, description, startPrice, reservePrice});
 //     });
+
+//Add item
 program
     .command('add')
     .alias('a')
     .description('Add a item')
     .action(() => {
         inquirer.prompt(questions).then(answers => addItem(answers))
-    })
+    });
 
+//Find item
 program
     .command('find <item>')
     .alias('f')
     .description('Find a item')
     .action(item => findItem(item));
 
+//Remove item
+program
+    .command('remove <_id>')
+    .alias('r')
+    .description('Remove a item')
+    .action((_id) => removeItem(_id));
+
+//Update Item
+program
+    .command('update <_id>')
+    .alias('u')
+    .description('Update a item')
+    .action((_id) => {
+        inquirer.prompt(questions).then(answers => updateItem({_id}, answers))
+    });
+    
+//List items
+program
+    .command('list')
+    .alias('l')
+    .description('List all items')
+    .action(() => listItems());
 
 program.parse(process.argv);

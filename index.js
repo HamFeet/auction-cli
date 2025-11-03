@@ -27,9 +27,40 @@ const findItem = (item) => {
     });
 }
 
+//Update Item
+const updateItem = (_id, item) => {
+    Item.updateOne({_id}, item)
+    .then(results => {
+        console.info('Item updated');
+        mongoose.connection.close();
+    });
+}
+
+//Remove Item
+const removeItem = (_id) => {
+    Item.deleteOne({_id})
+    .then(results => {
+        console.info('Item removed');
+        mongoose.connection.close();
+    });
+}
+
+//List Items
+const listItems = () => {
+    Item.find()
+    .then(results => {
+        console.info(results);
+        console.info(`${results.length} items`);
+        mongoose.connection.close();
+    });
+}
+
 //Export methods 
 
 export {
     addItem,
-    findItem
+    findItem,
+    updateItem,
+    removeItem,
+    listItems
 };
