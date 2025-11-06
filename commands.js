@@ -38,14 +38,6 @@ program
     .version('1.0.0')
     .description('Auction Management System')
 
-// program
-//     .command('add <item> <description> <startPrice> <reservePrice>')
-//     .alias('a')
-//     .description('Add a item')
-//     .action((item, description, startPrice, reservePrice) => {
-//         addItem({item, description, startPrice, reservePrice});
-//     });
-
 //Add item
 program
     .command('add')
