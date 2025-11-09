@@ -15,13 +15,20 @@ const addItem = async (item) => {
 //Find Item
 const findItem = async (item) => {
     await connectDB();
-    //Make case insensitive
-    const search = new RegExp(item, 'i');
-    Item.find({ item: search }).then(results => {
+    try {
+        //Make case insensitive
+        const search = new RegExp(item, 'i');
+        const results = await Item.find({ item: search })
         console.info(results);
         console.info(`${results.length} matches`);
+        return results
+    } catch (err) {
+        console.error("Error during item search:", err)
+        throw err;
+    } 
+    finally {
         mongoose.connection.close();
-    });
+    }
 }
 
 //Update Item
