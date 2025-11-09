@@ -23,7 +23,7 @@ const findItem = async (item) => {
         console.info(`${results.length} matches`);
         return results
     } catch (err) {
-        console.error("Error during item search:", err)
+        console.error("Error during item search:", err);
         throw err;
     } 
     finally {
@@ -32,34 +32,48 @@ const findItem = async (item) => {
 }
 
 //Update Item
-const updateItem = async (_id, item) => {
+const updateItem = async (_id, newItem) => {
     await connectDB();
-    Item.updateOne({_id}, item)
-    .then(results => {
-        console.info('Item updated');
+    try {
+        const results =  await Item.findByIdAndUpdate({_id}, newItem, { new: true });
+        console.info("Item updated:", results);
+        return results
+    } catch (err) {
+        console.error("Error during item search:", err);
+        throw err;}
+    finally {
         mongoose.connection.close();
-    });
+    }       
 }
 
 //Remove Item
-const removeItem = async (_id) => {
+const removeItem = async (id) => {
     await connectDB();
-    Item.deleteOne({_id})
-    .then(results => {
-        console.info('Item removed');
+    try {
+        const result = await Item.findByIdAndDelete(id)
+        console.info('Item removed:', result);
+        return result
+    } catch (err) {
+        console.error("Error during item search:", err);
+        throw err;}
+    finally {
         mongoose.connection.close();
-    });
+    }
 }
 
 //List Items
 const listItems = async () => {
     await connectDB();
-    Item.find()
-    .then(results => {
+    try {
+        const results = await Item.find()
         console.info(results);
         console.info(`${results.length} items`);
-        mongoose.connection.close();
-    });
+        return results
+    } catch (err) {
+        console.error("Error listing items:", err);
+        throw err;
+    }
+    mongoose.connection.close();
 }
 
 //Export methods 
