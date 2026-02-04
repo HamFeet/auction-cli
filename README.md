@@ -59,10 +59,14 @@ The purpose of this project was to:
    git clone https://github.com/HamFeet/auction-cli.git
    cd auction-cli
 2. **Install dependencies**
+    ```bash
     npm install
 3. **Set up environment variables**
+    ```bash
     MONGO_URI=your_mongodb_connection_string
 4. **Run the CLI**
+    ```bash
     node index.js
 5. **Use commander**
+    ```bash
     commands.js --help
